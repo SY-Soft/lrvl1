@@ -1,0 +1,19 @@
+если не запустиил >
+
+cd \projects_docker\stack\
+docker compose up --build -d
+<--------------
+
+docker exec -it stack-php-1 bash
+cd /var/www/projects/lrvl1
+---------------------
+
+./artisan или php artisan
+composer
+
+
+http://lrvl1.localhost/
+phpMyAdmin:
+http://localhost:8080  root@root
+
+
