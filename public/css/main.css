@@ -28,7 +28,7 @@ body {
 form .form-group .error{
     color: red;font-size: 80%;
 }
-i.sy-user-op{ font-size: 22px; margin-right: 10px;}
+i.sy-user-op{ font-size: 22px; margin-right: 5px;}
 i.sy-user-op.text-secondary{ cursor: default; }
 i.sy-user-op:last-child{margin-left: 0;}
 .sy-loader{

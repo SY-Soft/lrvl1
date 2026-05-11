@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
             return $user->id === 1;
         });
         View::composer('news.latestnews.sidebar', function ($view) {
-            $latestNews = News::latest()
+            $latestNews = News::where('published', true)->latest()
                 ->take(5)
                 ->get();
 

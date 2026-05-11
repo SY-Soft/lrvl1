@@ -44,6 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/user/{user}', [UserController::class, 'destroy'])
         ->middleware('can:delete,user');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+    Route::post('/admin/news/{news}/publish', [NewsController::class, 'togglePublish'])
+        ->name('news.toggle-publish');
     /*
     Route::get('/devel', [DevelController::class, 'develForm'])->name('devel');
     Route::post('/devel',[DevelController::class, 'develGo'])->name('devel.go');

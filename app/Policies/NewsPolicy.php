@@ -8,6 +8,24 @@ use Illuminate\Auth\Access\Response;
 
 class NewsPolicy
 {
+    // пример от GPT
+
+    /*
+    public function update(User $user, News $news)
+{
+    return $user->id === $news->user_id;
+}
+
+public function delete(User $user, News $news)
+{
+    return $user->id === $news->user_id;
+}
+
+public function create(User $user)
+{
+    return true;
+}
+    */
 
 
     /**
@@ -15,7 +33,7 @@ class NewsPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,9 +41,30 @@ class NewsPolicy
      */
     public function view(User $user, News $news): bool
     {
-        return false;
+      // dd($news->published);
+        // Если новость опубликована — её может видеть любой человек
+        if ($news->published) {
+            return true;
+        }
+
+        // Если новость НЕ опубликована — смотрим права пользователя
+        // Только автор + админ + редактор
+        if ($user->id === $news->user_id) {
+            return true;
+        }
+
+        // Админ (1) и Редактор (2) могут видеть все черновики
+        return in_array($user->role, [1, 2]);
     }
 
+    public function public(User $user, News $news): bool
+    {
+        // Автор новости + Админ + Редактор могут публиковать/снимать
+        if ($user->id === $news->user_id) return true;
+        if (in_array($user->role, [1, 2])) return true; // 1=admin, 2=editor
+
+        return false;
+    }
     /**
      * Determine whether the user can create models.
      */

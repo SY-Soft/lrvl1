@@ -34,7 +34,7 @@
                     <th scope="col">Заголовок</th>
                     <th scope="col">Тизер</th>
                     <th scope="col">Ссылка</th>
-                    <th scope="col">...</th>
+                    <th scope="col" class="text-center">...</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,7 +51,7 @@
                                 {{ $new->title }}
                             </a>
                         </td>
-                        <td>
+                        <td class="text-nowrap">
                             @can('update', $new)
                                     <a href="/admin/news/{{ $new->id }}/edit"><i class="bi bi-pencil-square sy-user-op" role="button" title="Редактировать"></i></a>
                                 @else
@@ -64,6 +64,24 @@
                                 @else
                                     <i class="bi bi-trash sy-user-op text-secondary" role="button"></i>
                                 @endcan
+                                @can('public', $new)
+                                    <i class="bi sy-user-op {{ $new->published ? 'bi-check-square-fill text-success' : 'bi-square text-primary' }} publish_news"
+                                       title="{{ $new->published ? 'Снять с публикации' : 'Опубликовать' }}"
+                                       data-id="{{ $new->id }}"
+                                       data-set="{{ $new->published ? 0 : 1 }}"
+                                       role="button">
+                                    </i>
+                                    {{--
+                                    @if($new->published)
+                                        <i class="bi bi-check-square-fill sy-user-op text-success publish_news" title="Снять с публикации" data-id="{{ $new->id }}" data-set="0" role="button"></i>
+                                    @else
+                                        <i class="bi bi-square sy-user-op text-primary publish_news" title="Опубликовать" data-id="{{ $new->id }}"  data-set="1" role="button"></i>
+                                    @endif
+                                    --}}
+                                @else
+                                    <i class="bi bi-square sy-user-op text-secondary" role="button"></i>
+                                @endcan
+
                         </td>
 
                     </tr>

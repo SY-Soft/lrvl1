@@ -9,8 +9,12 @@
         <h1>{{ $news->title }}</h1>
 
         <div class="row">
-
+            @if(!$news->published)
+                <div class="col-12 text-center bg-danger bg-opacity-50 p-2 fs-3">Не опубликовано</div>
+            <div class="col-12 bg-warning bg-opacity-10 p-3">
+                @else
             <div class="col-12">
+            @endif
 
 @if($news->image)
                     <a href="{{ asset('storage/'.$news->image) }}" data-fancybox="gallery" class="fancybox-zoom">

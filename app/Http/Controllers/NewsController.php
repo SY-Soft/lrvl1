@@ -9,17 +9,38 @@ use Illuminate\Support\Facades\Storage;
 use App\Services\NewsImageService;
 class NewsController extends Controller
 {
+
+    public function __construct()
+    {
+        // Применяем Policy только к admin-действиям
+        $this->middleware('auth')->only([
+            'create', 'store', 'edit', 'update', 'destroy', 'admin_index'
+        ]);
+
+        $this->authorizeResource(News::class, 'news', [
+            'except' => ['index', 'show']   // исключаем публичные страницы
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $news = News::orderBy('id','desc')->paginate(10);
-        return view('news.index',compact('news'));
+        $this->authorize('viewAny', News::class); // если хочешь ограничить
+
+        $news = News::where('published', true)
+            ->orderBy('id','desc')
+            ->paginate(10);
+
+        return view('news.index', compact('news'));
+
+        // $news = News::orderBy('id','desc')->paginate(10);
+        // return view('news.index',compact('news'));
     }
     public function admin_index()
     {
-        $news = News::orderBy('id','asc')->paginate(10);
+        $news = News::orderBy('id','desc')->paginate(10);
 
         return view('news.admin_index',compact('news'));
 
@@ -73,6 +94,9 @@ class NewsController extends Controller
     public function show($slug)
     {
         $news = News::where('slug', $slug)->firstOrFail();
+
+        // Правильный вызов авторизации
+        $this->authorize('view', $news);   // ← важно передавать именно $news, а не News::class
 
         return view('news.show', compact('news'));
     }
@@ -138,7 +162,22 @@ class NewsController extends Controller
             ->route('news.admin_index')
             ->with('success', 'Новость удалена');
     }
+    /**
+     * Переключение публикации новости (AJAX)
+     */
+    public function togglePublish(Request $request, News $news)
+    {
+        $this->authorize('public', $news);   // проверяем право через Policy
 
+        $news->published = !$news->published;
+        $news->save();
+
+        return response()->json([
+            'success' => true,
+            'published' => $news->published,
+            'id' => $news->id
+        ]);
+    }
     /*
     private function saveNewsImage($file)
     {
