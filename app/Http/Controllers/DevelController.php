@@ -14,6 +14,7 @@ use App\Services\NewsImageService;
 class DevelController extends Controller
 {
 
+
     public function develForm()
     {
         return view('devel.form');

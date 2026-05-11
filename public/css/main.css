@@ -112,3 +112,75 @@ i.sy-user-op:last-child{margin-left: 0;}
 .fancybox-zoom img {
     display: block;
 }
+.latest-news-item{ border-bottom: black solid 1px; padding-bottom: 5px; margin-bottom: 10px; display: inline-block; width: 100%; }
+.latest-news-item:last-child { border: none; }
+.latest-new-title{ font-weight: bold; margin-bottom: 10px; }
+.latest-new-body{}
+.latest-new-image{ float: left; margin: 0 10px 10px 0; }
+.latest-new-date-author{float: left; width: 100%; font-size: 14px; margin: 10px 0; font-style: italic; }
+.latest-new-date{ float: left; }
+.latest-new-author{ float: right; }
+.latest-new-more{ width: 100%; text-align: right; display: inline-block; }
+.latest-new-more a,
+.latest-new-more a:hover,
+.latest-new-more a:focus,
+.latest-new-more a:active{ text-decoration: none; color: #383838; }
+
+.latest-news-sidebar a.news-all,
+.latest-news-sidebar a.news-all:hover,
+.latest-news-sidebar a.news-all:focus,
+.latest-news-sidebar a.news-all:active{ text-decoration: none; color: #383838; }
+
+
+.indexNews-item {
+    display: flex;
+    gap: 16px; /* расстояние между картинкой и текстом */
+    margin-bottom: 20px;
+}
+
+.indexNews-item:last-child {
+    margin: 0;
+}
+
+.indexNews-image {
+    flex: 0 0 150px; /* фиксированная ширина картинки */
+}
+
+.indexNews-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;width: 100%;
+}
+
+/* строка: title */
+.indexNews-title {
+    font-weight: bold;
+}
+
+/* строка: autor + date */
+.indexNews-autor-date {
+    display: flex;
+    gap: 12px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* body */
+.indexNews-inner > p,
+.indexNews-inner > .body {
+    /* если body просто текст — можно оставить как есть */
+}
+.indexNews-body {
+    line-height: 1.4;
+}
+/* more details */
+.indexNews-more-details {
+    margin-top: auto; /* опционально — прижать вниз */
+    text-align: right;
+}
+
+.indexNews-more-details a,
+.indexNews-more-details a:hover,
+.indexNews-more-details a:focus,
+.indexNews-more-details a:active{ text-decoration: none; color: #0021d9; }
+

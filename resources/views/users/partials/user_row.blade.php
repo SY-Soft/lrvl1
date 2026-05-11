@@ -3,15 +3,15 @@
     <td class="text-center" style="width:40px">{{ $user->id }}</td>
 
     <td>
-        {{ $user->name }}{{ $user->role_name }}
+        {{ $user->name }} ({{ $user->getRoleName() }})
     </td>
 
     <td>{{ $user->email }}</td>
 
     <td class="text-nowrap">
-        @if (auth()->user()->id === 1)
+        @can('devel-access')
             <a href="/devel/login/{{ $user->id }}" title="Авторизоваться как {{ $user->name }}"><i class="bi bi-box-arrow-in-right sy-user-op text-primary"></i></a>
-        @endif
+        @endcan
 
         @can('promote', $user)
             <i class="bi bi-person-fill-up sy-user-op role-up text-success"

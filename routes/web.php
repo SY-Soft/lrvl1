@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {    return view('pages.home');})->name('home');
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/admin/news', [NewsController::class, 'admin_index'])->name('news.admin_index');
 Route::post('/admin/news', [NewsController::class, 'store'])->name('news.store');
 
@@ -29,6 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/admin/news/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
 //    Route::delete('/admin/news/{user}', [UserController::class, 'destroy'])->middleware('can:delete,new');
 
+
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
     Route::get('/user/create', [UserController::class, 'create'])
         ->name('user.create'); //        ->middleware('can:create,App\Models\User');
 
@@ -42,8 +44,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/user/{user}', [UserController::class, 'destroy'])
         ->middleware('can:delete,user');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+    /*
     Route::get('/devel', [DevelController::class, 'develForm'])->name('devel');
     Route::post('/devel',[DevelController::class, 'develGo'])->name('devel.go');
     Route::get('/devel/login/{user}', [DevelController::class,'loginAs'])->name('devel.login');
+*/
+    Route::prefix('devel')->name('devel.')->middleware('can:devel-access')->group(function () {
+
+        Route::get('/', [DevelController::class, 'develForm'])->name('index');
+        Route::post('/', [DevelController::class, 'develGo'])->name('go');
+        Route::get('/login/{user}', [DevelController::class, 'loginAs'])->name('login');
+
+    });
 
 });

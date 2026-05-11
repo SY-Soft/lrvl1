@@ -7,15 +7,10 @@
                     <p>
                         Привет, {{ auth()->user()->name }}
                     <br>
-                        @php
-                            $roles = ['user','admin','editor','author'];
-                        @endphp
-
-                        Вы {{ $roles[auth()->user()->role] }}
+                        Вы {{ auth()->user()->getRoleName() }}
                     <br>
                         <a class="nav-link" href="{{ route('logout') }}">Выйти</a>
                     <p>
-
 
                 @else
                     <p>

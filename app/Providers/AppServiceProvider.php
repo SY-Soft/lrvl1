@@ -33,6 +33,9 @@ class AppServiceProvider extends ServiceProvider
          */
         Gate::policy(User::class, UserPolicy::class);
         Gate::policy(News::class, NewsPolicy::class);
+        Gate::define('devel-access', function (User $user) {
+            return $user->id === 1;
+        });
         View::composer('news.latestnews.sidebar', function ($view) {
             $latestNews = News::latest()
                 ->take(5)

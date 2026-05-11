@@ -13,6 +13,10 @@ $(function(){
                 $('#adminNewsTable').load(url + ' #adminNewsTable > *');
             }
 
+            if ($('#indexNews').length) {
+                $('#indexNews').load(url + ' #indexNews > *');
+            }
+
         });
 
     $(document).ajaxStart(function(){ $('#globalLoader').removeClass('d-none'); });

@@ -21,7 +21,9 @@
                             <div class="indexNews-date">date</div>
                         </div>
                         {{ $new->excerpt }}
-                        <div class="indexNews-more-details">more details</div>
+                        <div class="indexNews-more-details">
+                            <a href="{{ route('news.show', $new->slug) }}">Подробнее...</a>
+                        </div>
                     </div>
                 </div>
                 @endforeach

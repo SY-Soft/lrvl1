@@ -8,24 +8,6 @@ use Illuminate\Auth\Access\Response;
 
 class NewsPolicy
 {
-    // пример от GPT
-
-    /*
-    public function update(User $user, News $news)
-{
-    return $user->id === $news->user_id;
-}
-
-public function delete(User $user, News $news)
-{
-    return $user->id === $news->user_id;
-}
-
-public function create(User $user)
-{
-    return true;
-}
-    */
 
 
     /**
