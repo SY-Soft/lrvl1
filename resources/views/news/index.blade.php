@@ -18,7 +18,7 @@
                         <div class="indexNews-title">{{ $new->title }}</div>
                         <div class="indexNews-autor-date">
                             <div class="indexNews-autor">{{ $new->user->name }}</div>
-                            <div class="indexNews-date">date</div>
+                            <div class="indexNews-date">{{ $new->created_at }}</div>
                         </div>
                         {{ $new->excerpt }}
                         <div class="indexNews-more-details">

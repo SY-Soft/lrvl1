@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {    return view('pages.home');})->name('home');
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 
-Route::get('/admin/news', [NewsController::class, 'admin_index'])->name('news.admin_index');
-Route::post('/admin/news', [NewsController::class, 'store'])->name('news.store');
 
 // Route::resource('news', NewsController::class);
 Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
@@ -22,6 +20,8 @@ Route::middleware('guest')->group(function () {
     Route::post('/login',[UserController::class, 'loginAuth'])->name('login.auth');
 });
 Route::middleware('auth')->group(function () {
+    Route::get('/admin/news', [NewsController::class, 'admin_index'])->name('news.admin_index');
+    Route::post('/admin/news', [NewsController::class, 'store'])->name('news.store');
     Route::get('/admin/news/create', [NewsController::class, 'create'])->name('news.create');
     Route::get('/admin/news/{news}/edit', [NewsController::class, 'edit'])->name('news.edit');
     Route::put('/admin/news/{news}', [NewsController::class, 'update'])->name('news.update');
@@ -41,8 +41,7 @@ Route::middleware('auth')->group(function () {
 
     Route::put('/user/{user}', [UserController::class, 'update'])->name('user.update');
 
-    Route::delete('/user/{user}', [UserController::class, 'destroy'])
-        ->middleware('can:delete,user');
+    Route::delete('/user/{user}', [UserController::class, 'destroy'])->middleware('can:delete,user');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
     Route::post('/admin/news/{news}/publish', [NewsController::class, 'togglePublish'])
         ->name('news.toggle-publish');

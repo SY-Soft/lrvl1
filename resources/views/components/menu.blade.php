@@ -9,9 +9,13 @@
 <li class="nav-item">
     <a class="nav-link" href="{{ route('news.index') }}">Новости</a>
 </li>
+@can('create', \App\Models\News::class)
+
 <li class="nav-item">
-    <a class="nav-link" href="{{ route('news.admin_index') }}">admin news</a>
+    <a class="nav-link" href="{{ route('news.admin_index') }}">Управление новостями</a>
 </li>
+@endcan
+
 @can('devel-access')
     <li class="nav-item">
         <a class="nav-link" href="{{ route('devel.index') }}">devel</a>

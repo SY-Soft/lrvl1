@@ -9,8 +9,12 @@ use Intervention\Image\Drivers\Gd\Driver;
 // https://image.intervention.io/ - v3
 class ImageStyleService
 {
-    public function getStyledImage(string $path, string $style): string
+    public function getStyledImage(?string $path, string $style): string
     {
+        if (empty($path)) {
+            $path = 'images/noimage.jpg';
+        }
+
         $styles = config('image_styles');
 
         if (!isset($styles[$style])) {

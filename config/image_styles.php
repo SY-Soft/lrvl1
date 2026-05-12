@@ -3,8 +3,8 @@
 return [
 
     'small' => [
-        'width' => 300,
-        'height' => 200,
+        'width' => 180,
+        'height' => 135,
         'fit' => true,
     ],
 

@@ -7,6 +7,6 @@
     <h1>Главная</h1>
 
     <p>Контент страницы</p>
-    <p>aaa@aaa.aaa<br>aaaaaa</p>
+    <p>admin@test.com<br>adminadmin</p>
 
 @endsection

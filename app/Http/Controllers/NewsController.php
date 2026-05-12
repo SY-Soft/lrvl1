@@ -178,36 +178,4 @@ class NewsController extends Controller
             'id' => $news->id
         ]);
     }
-    /*
-    private function saveNewsImage($file)
-    {
-        $originalName = pathinfo(
-            $file->getClientOriginalName(),
-            PATHINFO_FILENAME
-        );
-
-        $extension = $file->getClientOriginalExtension();
-
-        // транслит + slug
-        $baseName = Str::slug($originalName);
-
-        if (!$baseName) {
-            $baseName = 'image';
-        }
-
-        $fileName = $baseName . '.' . $extension;
-        $counter = 0;
-
-        while (Storage::disk('public')->exists('images/news/' . $fileName)) {
-            $fileName = $baseName . '_' . $counter . '.' . $extension;
-            $counter++;
-        }
-
-        return $file->storeAs(
-            'images/news',
-            $fileName,
-            'public'
-        );
-    }
-    */
 }

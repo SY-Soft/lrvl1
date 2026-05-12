@@ -11,32 +11,36 @@
         <div class="row">
             @if(!$news->published)
                 <div class="col-12 text-center bg-danger bg-opacity-50 p-2 fs-3">Не опубликовано</div>
-            <div class="col-12 bg-warning bg-opacity-10 p-3">
-                @else
-            <div class="col-12">
-            @endif
+                <div class="col-12 bg-warning bg-opacity-10 p-3">
+                    @else
+                        <div class="col-12">
+                            @endif
+                            <div class="body-full">
 
-@if($news->image)
-                    <a href="{{ asset('storage/'.$news->image) }}" data-fancybox="gallery" class="fancybox-zoom">
-                        <img src="{{ image_style($news->image, 'square_center') }}">
-                    </a>
-@endif
+                            @if($news->image)
+                                <a href="{{ asset('storage/'.$news->image) }}" data-fancybox="gallery"
+                                   class="fancybox-zoom main-image">
+                                    <img src="{{ image_style($news->image, 'square_center') }}">
+                                </a>
+                            @else
+                                <img src="{{ image_style('', 'square_center') }}" class="main-image">
+                            @endif
 
-<div>
-    {!! $news->body !!}
-</div>
 
-<hr>
+                                {!! $news->body !!}
+                            </div>
 
-<small>
-    Автор: {{ $news->user->name }} |
-    Дата: {{ $news->created_at }}
-</small>
+                            <hr>
 
-            </div>
+                            <small>
+                                Автор: {{ $news->user->name }} |
+                                Дата: {{ $news->created_at }}
+                            </small>
+
+                        </div>
+
+                </div>
 
         </div>
-
-    </div>
 
 @endsection

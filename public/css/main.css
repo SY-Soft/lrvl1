@@ -184,3 +184,7 @@ i.sy-user-op:last-child{margin-left: 0;}
 .indexNews-more-details a:focus,
 .indexNews-more-details a:active{ text-decoration: none; color: #0021d9; }
 
+.body-full .main-image{
+    float: left;
+    margin: 8px 20px 20px 0;
+}

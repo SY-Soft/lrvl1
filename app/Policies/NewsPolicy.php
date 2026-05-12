@@ -39,7 +39,7 @@ public function create(User $user)
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, News $news): bool
+    public function view(?User $user, News $news): bool
     {
       // dd($news->published);
         // Если новость опубликована — её может видеть любой человек
