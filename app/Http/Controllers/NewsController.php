@@ -27,7 +27,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $this->authorize('viewAny', News::class); // если хочешь ограничить
+        // $this->authorize('viewAny', News::class); // если хочешь ограничить
 
         $news = News::where('published', true)
             ->orderBy('id','desc')
