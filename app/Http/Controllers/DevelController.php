@@ -52,6 +52,8 @@ class DevelController extends Controller
 
 
             $users = User::whereIn('role', [1,2,3])->get();
+            $_users_count=count($users);
+            $_users_i=0;
 
             if ($users->isEmpty()) {
                 return back()->with('error', 'Нет пользователей');
@@ -59,7 +61,9 @@ class DevelController extends Controller
 
             for ($i = 1; $i <= $count; $i++) {
 
-                $user = $users->random();
+                $user = $users[$_users_i];
+                $_users_i++;
+                if($_users_i==$_users_count) $_users_i=0;
 
                 $imagePath = null;
 

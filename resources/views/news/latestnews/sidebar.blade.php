@@ -4,7 +4,7 @@
     @foreach($latestNews as $news)
         @include('news.latestnews.new', ['news' => $news])
     @endforeach
-    <hr>
-    link 2 news
-    <hr>
+<div class="all-news">
+    <a href="{{ route('news.index') }}">Все новости >>></a>
+</div>
 </div>

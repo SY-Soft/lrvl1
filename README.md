@@ -1,72 +1,60 @@
-## Учебный проект
+lrvl1
 
-Этот проект создавал в процессе изучения Laravel + Docker
+Учебно-тренировочный проект** для изучения Laravel 11 + Docker.
 
+### Практика с Docker
+Собран свой docker stack:
+- nginx wildcard домены — авто создание доменов `*.localhost`
+- 2 заглушки для тестов
+- Тренировочный проект Laravel + Drupal 11
+- MySQL вынесен из образа для удобства портирования
+- Поддерживает Laravel и Drupal 8/9/10/11
+- Автоматически определяет web root
 
-* Шаблоны на Bootstrap
+  (отдельный репозиторий)
 
+### Практика с Laravel
 
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
+Создан с нуля без использования готовых админок/помагалок и т.д. — чистый самопис.  
+Основная цель — понять, как работает Laravel «изнутри».
 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+**Фронт и админка**  
+Blade + Bootstrap 5
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Работа с изображениями**
+- Несколько стилей (`small`, `medium`, `square_center`) — генерируются по запросу на основании оригинала
+- fancybox
 
-## About Laravel
+**Модуль News**
+- Полный CRUD + статус "опубликовано"
+- Страница новости
+- Список всех новостей
+- Блок последних 5 новостей на главной
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**Модуль User**
+- Роли: Super Admin / Admin / Editor / Author / User
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**Права ролей:**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Super Admin** — может всё с пользователями и новостями. Кроме смены своей роли и удаления себя (только редактировать). Может авторизоваться под любым пользователем (Admin / Editor / Author / User).
+- **Admin** — может всё с пользователями (Editor / Author / User) и новостями. Кроме смены своей роли и удаления себя (только редактировать).
+- **Editor** — может всё с пользователями (Author / User) и редактировать себя. Может всё с новостями.
+- **Author** — может редактировать только себя. Может создавать новости, публиковать/снимать с публикации, редактировать и удалять свои новости.
+- **User** — не может ничего.
 
-## Learning Laravel
+**Ограничения:**
+- Нельзя удалить, редактировать или сменить роль Super Admin.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+**Модуль Devel**
+- Доступен только Super Admin
+- Генерирует N пользователей по циклу (Admin / Editor / Author)
+- Удаляет всех пользователей кроме Super Admin
+- Генерирует N новостей от всех пользователей по циклу (Admin / Editor / Author)
+- Удаляет все новости
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+Проект будет поднят на моём хостинге и закрыт через .htaccess.  
+Потенциальному работодателю / заказчику будет предоставлен доступ для демонстрации.
 
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
-```
-
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Ссылка:** https://SY-Soft.net

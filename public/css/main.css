@@ -131,6 +131,11 @@ i.sy-user-op:last-child{margin-left: 0;}
 .latest-news-sidebar a.news-all:focus,
 .latest-news-sidebar a.news-all:active{ text-decoration: none; color: #383838; }
 
+.latest-news-sidebar .all-news{ text-align: right; }
+.latest-news-sidebar .all-news a,
+.latest-news-sidebar .all-news a:hover,
+.latest-news-sidebar .all-news a:focus,
+.latest-news-sidebar .all-news a:active{ text-decoration: none; color: #001b7e; }
 
 .indexNews-item {
     display: flex;

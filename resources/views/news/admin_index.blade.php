@@ -43,7 +43,7 @@
                     <tr data-new-id="{{ $new->id }}">
 
                         <td class="text-center" style="width:40px">{{ $new->id }}</td>
-                        <td>{{ $new->user->name }}</td>
+                        <td>{{ $new->user->name }}<br>({{ $new->user->getRoleName() }})</td>
                         <td>{{ $new->title }}</td>
                         <td>{{ $new->excerpt }}</td>
                         <td>
